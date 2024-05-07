@@ -1,10 +1,10 @@
 {
-  "name": "task_1",
+  "name": "task_2",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack"
+    "build": "webpack --mode production"
   },
   "keywords": [],
   "author": "",
@@ -12,10 +12,11 @@
   "devDependencies": {
     "css-loader": "^7.1.1",
     "file-loader": "^6.2.0",
-    "image-webpack-loader": "^8.1.0",
+    "html-webpack-plugin": "^5.6.0",
     "lodash": "^4.17.21",
-    "style-loader": "^4.0.0",
-    "url-loader": "^4.1.1",
+    "mini-css-extract-plugin": "^2.9.0",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "terser-webpack-plugin": "^5.3.10",
     "webpack": "^5.91.0",
     "webpack-cli": "^5.1.4"
   },

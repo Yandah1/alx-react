@@ -1,38 +1,47 @@
-const path = require("path");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   mode: 'production',
-  entry: {
-    main: path.resolve(__dirname, './js/dashboard_main.js'),
-  },
+  entry: './js/dashboard_main.js',
   output: {
     path: path.resolve(__dirname, 'public'),
     filename: 'bundle.js',
   },
-  performance: {
-		maxAssetSize: 1000000,
-    maxEntrypointSize: 1000000,
-	},
   module: {
     rules: [
       {
-        test: /\.css$/i,
-        use: ["style-loader", "css-loader"],
+        test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader'],
       },
       {
-        test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
-        type: 'asset/resource',
+        test: /\.(png|svg|jpg|gif)$/,
         use: [
-          'file-loader',
-					{
-						loader: 'image-webpack-loader',
-						options: {
-							bypassOnDebug: true,
-							disable: true,
-						},
-					},
-				],
+          {
+            loader: 'file-loader',
+            options: {
+              name: 'holberton-logo.[ext]',
+            },
+          },
+        ],
       },
-    ]
-  }
+    ],
+  },
+  optimization: {
+    minimizer: [
+      new OptimizeCssAssetsPlugin(),
+      new TerserPlugin(),
+    ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: './public/index.html',
+    }),
+    new MiniCssExtractPlugin({
+      filename: 'main.css',
+    }),
+  ],
 };
