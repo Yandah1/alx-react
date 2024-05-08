@@ -1,0 +1,57 @@
+.App {
+  text-align: center;
+  padding: 1.2em;
+  font-family: Arial, Helvetica, sans-serif;
+  border-bottom: 4px solid #E0354B;
+
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  align-items: flex-start;
+}
+
+.App-header {
+  background-color: white;
+  padding: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(237, 38, 38);
+}
+
+.App-header img {
+	width: 250px;
+	height: 250px;
+}
+
+.App-body {
+  margin: 100px 0;
+  margin-top: 5px;
+  margin-bottom: 300px;
+  color: black;
+  text-align: left;
+}
+.App-body .email-label {
+  flex-direction: row;
+}
+
+.App-body .password-label {
+ flex-direction: row
+}
+
+.App-footer {
+  background-color: white;
+  margin-top: 80px;
+  color: black;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.separator {
+  height: 2px;
+  background-color: red;
+  margin: 10px 0;
+}
