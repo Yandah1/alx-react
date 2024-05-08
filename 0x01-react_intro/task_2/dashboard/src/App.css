@@ -1,0 +1,42 @@
+.App {
+  text-align: center;
+  /*padding: 20px;*/
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+  align-items: flex-start;
+}
+
+.App-header {
+  background-color: white;
+  padding: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: rgb(237, 38, 38);
+}
+
+.App-body {
+  margin: 100px 0;
+  margin-top: 5px;
+  margin-bottom: 300px;
+  color: black;
+  text-align: left;
+}
+
+.App-footer {
+  background-color: white;
+  margin-top: 80px;
+  color: black;
+  font-size: 14px;
+  font-style: italic;
+}
+
+.separator {
+  height: 2px;
+  background-color: red;
+  margin: 10px 0;
+}
