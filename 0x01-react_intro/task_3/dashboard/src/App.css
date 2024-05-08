@@ -34,8 +34,8 @@
   color: black;
   text-align: left;
 }
-.App-body .email-label {
-  flex-direction: row;
+.App-body .email {
+  display: flex;
 }
 
 .App-body .password-label {
