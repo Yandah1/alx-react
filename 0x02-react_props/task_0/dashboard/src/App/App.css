@@ -1,0 +1,29 @@
+/* App.css */
+
+.App {
+    text-align: center;
+    font-family: Arial, sans-serif;
+  }
+  
+  .App-body {
+    margin-top: 50px;
+  }
+  
+  .App-body label {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .App-body input {
+    margin-bottom: 10px;
+  }
+  
+  .App-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #282c34;
+    color: white;
+    padding: 10px 0;
+  }
+  
