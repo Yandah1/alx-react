@@ -1,0 +1,17 @@
+:root {
+    --holberton-red: #e1484c;
+}
+
+.App-header {
+    background-color: #282c34;
+    padding: 20px;
+    color: white;
+}
+
+.App-header img {
+    width: 150px;
+}
+
+.App-header h1 {
+    margin: 0;
+}
