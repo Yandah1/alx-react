@@ -28,7 +28,7 @@ function Notifications() {
       </button>
       <p>Here is the list of notifications</p>
       <ul>
-      <NotificationItem type="default" value="New course available">
+        <NotificationItem type="default" value="New course available">
 				</NotificationItem>
 				<NotificationItem type="urgent" value="New resume available">
 				</NotificationItem>
@@ -42,4 +42,4 @@ function Notifications() {
   );
 };
 
-export default Notifications
+export default Notifications;

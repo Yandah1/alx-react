@@ -1,27 +1,26 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Notifications from './Notifications';
+import NotificationItem from './NotificationItem';
 
-describe("Testing the <Notifications /> Component", () => {
-  let wrapper;
-
-  beforeEach(() => {
-    wrapper = shallow(<Notifications />);
+describe('<NotificationItem />', () => {
+  it('renders the component without crashing', () => {
+    shallow(<NotificationItem type="default" />);
   });
 
-  it("<Notifications /> is rendered without crashing", () => {
-    expect(wrapper).toBeDefined();
+  it('renders the correct html when given type and value props', () => {
+    const wrapper = shallow(
+      <NotificationItem type="default" value="test" />
+    );
+    expect(wrapper.find('li').text()).toBe('test');
   });
 
-  it("<Notifications /> renders NotificationItems", () => {
-    expect(wrapper.find('NotificationItem')).toHaveLength(3);
-  });
-
-  it("<Notifications /> renders the text 'Here is the list of notifications'", () => {
-    expect(wrapper.find('p').text()).toEqual('Here is the list of notifications');
-  });
-
-  it("verify that the first NotificationItem element renders the right html", () => {
-    expect(wrapper.find("NotificationItem").first().render().text()).toEqual('New course available');
+  it('renders the correct html when given html prop', () => {
+    const htmlContent = { __html: '<u>test</u>' };
+    const wrapper = shallow(
+      <NotificationItem type="default" html={htmlContent} />
+    );
+    expect(wrapper.find('li').prop('dangerouslySetInnerHTML')).toEqual(
+      htmlContent
+    );
   });
 });
