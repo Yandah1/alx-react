@@ -1,10 +1,11 @@
 module.exports = {
-  // ... other config options ...
-  preset: 'ts-jest', // or 'babel-jest' if you're using Babel
   transform: {
-    '^.+\\.js$': 'babel-jest',
+    '^.+\\.jsx?$': 'babel-jest',  // ensures that Babel compiles your JS/JSX files
   },
   moduleNameMapper: {
-    '^react-native$': 'react-native-web',
+    '\\.css$': '<rootDir>/__mocks__/styleMock.js',
+    '\\.(jpg|jpeg|png|gif|webp|svg)$': '<rootDir>/__mocks__/fileMock.js',
   },
+  setupFilesAfterEnv: ['<rootDir>/config/setupTests.js'],
+  
 };

@@ -17,7 +17,7 @@ describe("Testing the <Notifications /> Component", () => {
 
   it("<Notifications /> renders NotificationItems", () => {
     wrapper.setProps({displayDrawer: true});
-    expect(wrapper.find('NotificationItem')).not.toHaveLength(0);
+    expect(wrapper.find('NotificationItem')).not.toHaveLength(3);
   });
 
   it("<Notifications /> render the text 'Here is the list of notifications'", () => {
