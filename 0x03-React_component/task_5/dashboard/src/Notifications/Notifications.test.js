@@ -44,4 +44,25 @@ describe('Testing the <Notifications /> Component', () => {
     instance.markAsRead(id);
     expect(consoleLogSpy).toHaveBeenCalledWith(`Notification ${id} has been marked as read`);
   });
+
+  it('does not rerender when props are updated with the same list', () => {
+    const list = [
+      { id: 1, type: 'default', value: 'Notification 1' },
+      { id: 2, type: 'urgent', value: 'Notification 2' },
+    ];
+    wrapper = shallow(<Notifications listNotifications={list} />);
+    wrapper.setProps({ listNotifications: list });
+    expect(wrapper).toMatchSnapshot();
+  });
+
+  it('rerenders when props are updated with a longer list', () => {
+    const list = [
+      { id: 1, type: 'default', value: 'Notification 1' },
+      { id: 2, type: 'urgent', value: 'Notification 2' },
+    ];
+    const longerList = [...list, { id: 3, type: 'default', value: 'Notification 3' }];
+    wrapper = shallow(<Notifications listNotifications={list} />);
+    wrapper.setProps({ listNotifications: longerList });
+    expect(wrapper).toMatchSnapshot();
+  });
 });

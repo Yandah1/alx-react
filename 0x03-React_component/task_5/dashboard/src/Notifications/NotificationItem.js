@@ -22,16 +22,21 @@ class NotificationItem extends React.PureComponent {
         :
         <li
         data-notification-type={this.props.type}
-        dangerouslySetInnerHTML={this.props.html}
         onClick={() => {console.log('empty func');}}
-        ></li>
+        >
+          {this.props.html && typeof this.props.html === 'object' && this.props.html.__html ? 
+          <div dangerouslySetInnerHTML={{ __html: this.props.html.__html }} /> 
+          : 
+          null
+        }
+        </li>
       );
     }
   }
 NotificationItem.propTypes = {
   type: PropTypes.string.isRequired,
   value: PropTypes.string,
-  html: PropTypes.string,
+  html: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   id: PropTypes.number.isRequired,
   markAsRead: PropTypes.func
 };
