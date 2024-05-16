@@ -1,6 +1,9 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import App from './App';
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom';
+import Notifications from '../Notifications/Notifications';
+import Login from '../Login/Login';
 
 describe('Test App.js', () => {
   let wrapper;
@@ -14,7 +17,7 @@ describe('Test App.js', () => {
   });
 
   it('App component contains Notifications component', () => {
-    expect(wrapper.find("Notifications")).toHaveLength(1);
+    expect(wrapper.find(Notifications)).toHaveLength(1);
   });
 
   it('App component contains Header component', () => {
@@ -73,5 +76,24 @@ describe('Testing <App logOut={logOutMock} />', () => {
     expect(event.preventDefault).toHaveBeenCalled();
     expect(logOutMock).toHaveBeenCalled();
     expect(alertMock).toHaveBeenCalledWith('Logging you out');
+  });
+});
+
+
+describe('render', () => {
+
+  // Renders the Notification component with the listNotifications prop.
+  it('should render the Notification component with the listNotifications prop', () => {
+    const isLoggedIn = true;
+    const wrapper = mount(<App isLoggedIn={isLoggedIn} />);
+    expect(wrapper.find(Notifications).prop('listNotifications')).toEqual(App.listNotifications);
+  });
+
+  // If this.props.isLoggedIn is null or undefined, renders the Login component inside a BodySectionWithMarginBottom component with the title prop "Log in to continue".
+  it('should render the Login component inside a BodySectionWithMarginBottom component with the title prop "Log in to continue" when this.props.isLoggedIn is null or undefined', () => {
+    const isLoggedIn = null;
+    const wrapper = shallow(<App isLoggedIn={isLoggedIn} />);
+    expect(wrapper.find(BodySectionWithMarginBottom).prop('title')).toEqual('Log in to continue');
+    expect(wrapper.find(Login)).toHaveLength(1);
   });
 });
