@@ -1,5 +1,5 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import App from './App';
 
 describe('Test App.js', () => {
@@ -47,5 +47,31 @@ describe("Testing <App isLoggedIn={true} />", () => {
 
   it("the CourseList component is included", () => {
     expect(wrapper.find('CourseList').exists()).toBeTruthy();
+  });
+});
+
+describe('Testing <App logOut={logOutMock} />', () => {
+  let logOutMock;
+  let alertMock;
+  let wrapper;
+
+  beforeEach(() => {
+    logOutMock = jest.fn();
+    alertMock = jest.spyOn(window, 'alert').mockImplementation(() => {});
+    wrapper = shallow(<App logOut={logOutMock} />);
+  });
+
+  afterEach(() => {
+    alertMock.mockRestore();
+  });
+
+  it('calls logOut and displays alert when Ctrl+H is pressed', () => {
+    const instance = wrapper.instance();
+    const event = { preventDefault: jest.fn(), ctrlKey: true, key: 'h' };
+    instance.handleKeyDown(event);
+
+    expect(event.preventDefault).toHaveBeenCalled();
+    expect(logOutMock).toHaveBeenCalled();
+    expect(alertMock).toHaveBeenCalledWith('Logging you out');
   });
 });
