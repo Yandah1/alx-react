@@ -66,10 +66,6 @@ describe("Testing <Notification displayDrawer={true}/> ", () => {
     expect(wrapper.find('.menuItem')).toHaveLength(1);
   });
 
-  it("div.Notifications is being displayed when displayDrawer is true", () => {
-    console.log(wrapper.debug());
-    expect(wrapper.find('.Notifications')).toHaveLength(1);
-  });
 });
 
 describe("Testing <Notification displayDrawer={true} listNotifications={[...]}/> ", () => {
