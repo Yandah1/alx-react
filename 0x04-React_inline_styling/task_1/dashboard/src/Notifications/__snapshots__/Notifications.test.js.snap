@@ -1,0 +1,5 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Testing the <Notifications /> Component does not rerender when props are updated with the same list 1`] = `ShallowWrapper {}`;
+
+exports[`Testing the <Notifications /> Component rerenders when props are updated with a longer list 1`] = `ShallowWrapper {}`;
