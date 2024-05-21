@@ -6,14 +6,11 @@ const styles = StyleSheet.create({
   row: {
     backgroundColor: (props) => (props.isHeader ? '#f5f5f5ab' : '#deb5b545'),
   },
-  header: {
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
   cell: {
     padding: '5px 10px',
     borderBottom: '1px solid lightgray',
-    textAlign: 'left'
+    textAlign: (props) => (props.isHeader ? 'center' : 'left'),
+    fontWeight: (props) => (props.isHeader ? 'bold' : 'normal'),
   },
 });
 
@@ -21,16 +18,17 @@ function CourseListRow({ isHeader, textFirstCell, textSecondCell }) {
   return (
     <tr className={css(styles.row)}>
       {isHeader ? (
-        textSecondCell === null ? (
-          <th className={css(styles.header, styles.cell)} colSpan="2">
-            {textFirstCell}
-          </th>
-        ) : (
-          <>
-            <th className={css(styles.header, styles.cell)}>{textFirstCell}</th>
-            <th className={css(styles.header, styles.cell)}>{textSecondCell}</th>
-          </>
-        )
+        <th
+          className={css(styles.cell)}
+          colSpan={textSecondCell === null ? "2" : "1"}
+        >
+          {textFirstCell}
+          {textSecondCell !== null ? (
+            <th className={css(styles.cell)}>{textSecondCell}</th>
+          ) : (
+            ''
+          )}
+        </th>
       ) : (
         <>
           <td className={css(styles.cell)}>{textFirstCell}</td>

@@ -8,20 +8,19 @@ import { StyleSheet, css } from 'aphrodite';
 
 
 const styles = StyleSheet.create({
-  menuItem: {
-    position: 'absolute',
-    top: '7px',
-    right: '7px',
-  },
-  Notifications: {
+    Notifications: {
     border: '3px dotted var(--holberton-red)',
     padding: '6px 12px',
     position: 'absolute',
     top: '21px',
     right: '7px',
     marginTop: '12px',
+    zIndex: '100',
+	},
+  menuItem: {
+    textAlign: 'right'
   },
-  notificationItem: {
+notificationItem: {
     default: {
       color: 'blue',
     },

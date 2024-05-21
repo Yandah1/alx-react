@@ -12,28 +12,18 @@ const styles = StyleSheet.create({
 });
 
 class NotificationItem extends React.PureComponent {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    const type = this.props.type;
+    const { type, value, html, markAsRead, id } = this.props;
     const style = type === 'urgent' ? styles.urgent : styles.default;
 
     return (
-      this.props.value ? 
       <li
-        data-notification-type={this.props.type}
+        data-notification-type={type}
         className={css(style)}
-        onClick={() => this.props.markAsRead(this.props.id)}
-      >{this.props.value}</li> 
-      :
-      <li
-        data-notification-type={this.props.type}
-        dangerouslySetInnerHTML={this.props.html}
-        className={css(style)}
-        onClick={() => this.props.markAsRead(this.props.id)}
-      ></li>
+        onClick={() => markAsRead(id)}
+      >
+        {value ? value : <span dangerouslySetInnerHTML={html} />}
+      </li>
     );
   }
 }
@@ -41,7 +31,7 @@ class NotificationItem extends React.PureComponent {
 NotificationItem.defaultProps = {
   type: 'default',
   markAsRead: () => {},
-  id: 0
+  id: 0,
 };
 
 NotificationItem.propTypes = {
@@ -49,7 +39,7 @@ NotificationItem.propTypes = {
   type: PropTypes.string.isRequired,
   value: PropTypes.string,
   markAsRead: PropTypes.func,
-  id: PropTypes.number
+  id: PropTypes.number,
 };
 
 export default NotificationItem;

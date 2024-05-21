@@ -2,7 +2,9 @@ import React from "react";
 import { shallow } from "enzyme";
 import CourseListRow from "./CourseListRow";
 import { StyleSheetTestUtils } from 'aphrodite';
+import { mockStyledComponents } from 'jest-styled-components';
 
+mockStyledComponents(CourseListRow);
 describe("Testing <CourseListRow />", () => {
   beforeEach(() => {
     StyleSheetTestUtils.suppressStyleInjection();
