@@ -82,7 +82,10 @@ class App extends React.Component {
           </BodySectionWithMarginBottom>
         )}
         <BodySection title="News from the School">
-          <p>React is fun</p>
+          <p><strong>React is fun- </strong>
+          Unlock the power of React and embark on a journey of dynamic, 
+          responsive, and captivating web experiences. React, the renowned JavaScript library, empowers you to create user interfaces that are not only visually appealing but also highly interactive and efficient.
+          </p>
         </BodySection>
         <div className={css(styles.footer)}>
         <Footer />
