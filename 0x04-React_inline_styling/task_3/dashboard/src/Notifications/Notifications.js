@@ -40,18 +40,35 @@ const styles = StyleSheet.create({
       color: 'var(--holberton-red)',
     },
   },
+  button: {
+    '@media (max-width: 900px)': {
+      position: 'relative',
+      float: 'right',
+    }
+  },
   notificationsList: {
     listStyle: 'none',
     margin: 0,
     padding: 0,
+  },
+  notificationPanelVisible: {
+    display: 'block',
+  },
+  notificationPanelHidden: {
+    display: 'none',
   },
 });
 
 class Notifications extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      isNotificationPanelVisible: false,
+    };
     this.markAsRead = this.markAsRead.bind(this);
+    this.toggleNotificationPanel = this.toggleNotificationPanel.bind(this);
   }
+
   shouldComponentUpdate(nextProps, nextState) {
     return this.props !== nextProps || this.state !== nextState;
   }
@@ -60,59 +77,63 @@ class Notifications extends Component {
     console.log(`Notification ${id} has been marked as read`);
   }
 
+  toggleNotificationPanel() {
+    this.setState((prevState) => ({
+      isNotificationPanelVisible: !prevState.isNotificationPanelVisible,
+    }));
+  }
+
   render() {
+    const { isNotificationPanelVisible } = this.state;
+    const { listNotifications } = this.props;
+
     return (
       <>
-        <div className={css(styles.menuItem)}>
+        <div
+          className={css(styles.menuItem)}
+          onClick={this.toggleNotificationPanel}
+        >
           Your notifications
         </div>
-        {this.props.displayDrawer ? (
-          <div className={css(styles.notifications)}>
-            <button
-              style={{
-                color: '#3a3a3a',
-                fontWeight: 'bold',
-                background: 'none',
-                border: 'none',
-                fontSize: '15px',
-                position: 'absolute',
-                right: '3px',
-                top: '3px',
-                cursor: 'pointer',
-                outline: 'none',
-              }}
-              aria-label="Close"
-              onClick={(e) => {
-                console.log('Close button has been clicked');
-              }}
-            >
-              <img src={closeIcon} alt="close icon" width="15px" />
-            </button>
-            {this.props.listNotifications.length !== 0 ? (
-              <p>Here is the list of notifications</p>
-            ) : null}
-            <ul className={css(styles.notificationsList)}>
-              {this.props.listNotifications.length === 0 ? (
+        <div
+          className={css(
+            styles.notifications,
+            isNotificationPanelVisible
+              ? styles.notificationPanelVisible
+              : styles.notificationPanelHidden
+          )}
+        >
+          <button
+            // ... (your existing button styles)
+            onClick={(e) => {
+              console.log('Close button has been clicked');
+            }}
+          >
+            <img src={closeIcon} alt="close icon" width="15px" />
+          </button>
+          {listNotifications.length !== 0 ? (
+            <p>Here is the list of notifications</p>
+          ) : null}
+          <ul className={css(styles.notificationsList)}>
+            {listNotifications.length === 0 ? (
+              <NotificationItem
+                type="default"
+                value="No new notification for now"
+              />
+            ) : (
+              listNotifications.map((val, idx) => (
                 <NotificationItem
-                  type="default"
-                  value="No new notification for now"
+                  type={val.type}
+                  value={val.value}
+                  html={val.html}
+                  key={val.id}
+                  id={val.id}
+                  markAsRead={this.markAsRead}
                 />
-              ) : null}
-              {this.props.listNotifications.map((val, idx) => {
-                return (
-                  <NotificationItem
-                    type={val.type}
-                    value={val.value}
-                    html={val.html}
-                    key={(val.id)}
-                    id={val.id}
-                    markAsRead={this.markAsRead}
-                  />
-                );
-              })}
-            </ul>
-          </div>
-        ) : null}
+              ))
+            )}
+          </ul>
+        </div>
       </>
     );
   }

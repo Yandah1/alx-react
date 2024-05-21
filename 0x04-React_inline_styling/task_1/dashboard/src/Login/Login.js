@@ -12,7 +12,18 @@ const styles = StyleSheet.create({
             margin: '0 16px 0 8px'
           }
     },
+    button: {
+        width: '20px',
+        height: '20px',
+        backgroundColor: 'white',
+        border: '1px solid yellow',
+        borderRadius: '0',
+        ':hover': {
+          borderColor: 'yellow'
+        }
+    }
 });
+
 function Login() {
     return (
         <>
@@ -22,7 +33,7 @@ function Login() {
                 <input type="email" id="email" name="email"  className={css(styles.AppBody.input)} />
                 <label htmlFor="password">Password: </label>
                 <input type="password" id="password" name="password"  className={css(styles.AppBody.input)}/>
-                <button>OK</button>
+                <button className={css(styles.button)}>OK</button>
             </div>
         </>
     )

@@ -12,6 +12,6 @@
   text-align: center;
   color: black;
   text-decoration: bold;
-  border-top: 3px solid var(--holberton-red);
+  /*border-top: 3px solid var(--holberton-red);*/
   padding: 16px 0;
 }
