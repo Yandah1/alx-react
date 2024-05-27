@@ -19,6 +19,17 @@
   color: rgb(237, 38, 38);
 }
 
+.login-form {
+  display: flex;
+  align-items: center;
+}
+
+.login-form label,
+.login-form input,
+.login-form button {
+  margin-right: 10px;
+}
+
 .App-body {
   margin: 100px 0;
   margin-top: 5px;

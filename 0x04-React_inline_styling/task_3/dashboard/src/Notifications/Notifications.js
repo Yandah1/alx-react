@@ -10,6 +10,7 @@ import { StyleSheet, css } from 'aphrodite';
 const styles = StyleSheet.create({
   menuItem: {
     position: 'absolute',
+    textAlign: 'right',
     top: '7px',
     right: '7px',
   },
@@ -17,6 +18,7 @@ const styles = StyleSheet.create({
     border: '3px dotted var(--holberton-red)',
     padding: '6px 12px',
     position: 'absolute',
+    textAlign: 'right',
     top: '21px',
     right: '7px',
     marginTop: '12px',
@@ -29,7 +31,8 @@ const styles = StyleSheet.create({
       top: '0',
       left: '0',
       right: 0,
-      border: 'none',
+      border: '3px dotted var(--holberton-red)',
+      
     }
   },
   notificationItem: {
@@ -47,9 +50,9 @@ const styles = StyleSheet.create({
     }
   },
   notificationsList: {
-    listStyle: 'none',
-    margin: 0,
-    padding: 0,
+      '@media (max-width: 900px)': {
+        padding: 0
+      }
   },
   notificationPanelVisible: {
     display: 'block',
@@ -103,7 +106,7 @@ class Notifications extends Component {
               : styles.notificationPanelHidden
           )}
         >
-          <button
+          <button className={css(styles.button)}
             // ... (your existing button styles)
             onClick={(e) => {
               console.log('Close button has been clicked');

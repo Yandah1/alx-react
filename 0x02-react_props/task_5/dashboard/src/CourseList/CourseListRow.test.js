@@ -3,18 +3,28 @@ import { shallow } from 'enzyme';
 import CourseListRow from './CourseListRow';
 
 describe('CourseListRow component', () => {
-  it('renders one cell with colspan = 2 when textSecondCell does not exist and isHeader is true', () => {
-    const wrapper = shallow(<CourseListRow isHeader={true} textFirstCell="First Cell" />);
-    expect(wrapper.find('th').prop('colSpan')).toBe(2);
+  it('should render without crashing', () => {
+    const wrapper = shallow(<CourseListRow />);
+    expect(wrapper.exists()).toBe(true);
   });
 
-  it('renders two cells when textSecondCell is present and isHeader is true', () => {
-    const wrapper = shallow(<CourseListRow isHeader={true} textFirstCell="First Cell" textSecondCell="Second Cell" />);
-    expect(wrapper.find('th').length).toBe(2);
+  it('should render one cell with colspan = 2 when textSecondCell is null', () => {
+    const wrapper = shallow(
+      <CourseListRow isHeader={true} textFirstCell="Test Header" textSecondCell={null} />
+    );
+    const th = wrapper.find('th');
+    expect(th).toHaveLength(1);
+    expect(th.prop('colSpan')).toEqual('2');
+    expect(th.text()).toEqual('Test Header');
   });
 
-  it('renders two td elements within a tr element when isHeader is false', () => {
-    const wrapper = shallow(<CourseListRow isHeader={false} textFirstCell="First Cell" textSecondCell="Second Cell" />);
-    expect(wrapper.find('td').length).toBe(2);
+  it('should render two cells when textSecondCell is not null', () => {
+    const wrapper = shallow(
+      <CourseListRow isHeader={false} textFirstCell="Test Cell 1" textSecondCell="Test Cell 2" />
+    );
+    const td = wrapper.find('td');
+    expect(td).toHaveLength(2);
+    expect(td.at(0).text()).toEqual('Test Cell 1');
+    expect(td.at(1).text()).toEqual('Test Cell 2');
   });
 });

@@ -28,6 +28,7 @@ class App extends React.Component {
     super(props);
     this.isLoggedIn = props.isLoggedIn;
     this.logOut = props.logOut;
+    this.listNotifications = App.listNotifications;
     this.handleKeyDown = this.handleKeyDown.bind(this);
   }
 
@@ -50,7 +51,7 @@ class App extends React.Component {
   render () {
     return (
       <>
-      <Notification listNotifications={this.listNotifications}/>
+      <Notification listNotifications={App.listNotifications} />
       <div className="App">
         <Header />
         {this.props.isLoggedIn ? (
