@@ -5,6 +5,7 @@ import App from './App';
 import { StyleSheetTestUtils } from 'aphrodite';
 import Notification from '../Notifications/Notifications';
 import { AppContext } from './AppContext';
+import { mapStateToProps } from './App';
 
 describe('Test App.js', () => {
   let wrapper;
@@ -119,5 +120,14 @@ describe("Testing <App isLoggedIn={true} />", () => {
     // Restore the mock
     alertMock.mockRestore();
     wrapper.unmount();
+  });
+
+  describe('Testing mapStateToProps', () => {
+    it('test that verify that the function returns the right object', () => {
+      let state = fromJS({
+        isUserLoggedIn: true
+      });
+      expect(mapStateToProps(state)).toEqual(expect.objectContaining({ isLoggedIn: true }));
+    });
   });
 });
