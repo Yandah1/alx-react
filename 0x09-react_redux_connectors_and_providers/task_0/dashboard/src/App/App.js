@@ -11,7 +11,6 @@ import PropTypes from 'prop-types';
 import { StyleSheet, css } from 'aphrodite';
 import { AppContext } from './AppContext';
 import { connect } from 'react-redux';
-import { getIsLoggedIn } from './reducers/uiReducer';
 
 const styles = StyleSheet.create({
   app: {
@@ -155,10 +154,9 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool
 };
 
-const mapStateToProps = (state) => {
-  return {
-    isLoggedIn: getIsLoggedIn(state),
-  };
-};
+const mapStateToProps = (state) => ({
+  isLoggedIn: state.ui.get('isUserLoggedIn')
+});
 
+export { mapStateToProps };
 export default connect(mapStateToProps)(App);
